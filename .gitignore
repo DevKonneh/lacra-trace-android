@@ -1,0 +1,86 @@
+# Built application files
+*.apk
+*.ap_
+*.aab
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+build/
+captures/
+.gradle/
+local.properties
+.idea/
+*.iml
+*.log
+
+# Gradle files
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Signing files
+*.jks
+*.keystore
+*.pem
+*.key
+config/signing.properties
+
+# Proguard
+proguard/
+proguard-rules.pro
+
+# Android Studio specific
+.idea/
+*.iws
+*.iml
+*.ipr
+.navigation/
+.cxx/
+
+# NDk
+obj/
+.externalNativeBuild/
+
+# Jetpack Compose compiler outputs
+.compose-cache/
+.kotlinc/
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+
+# Keystore files
+*.jks
+
+# Others
+.DS_Store
+*.swp
+*.swo
+*.db
+*.lock
+.ai
+
+# Crashlytics
+fabric.properties
+
+# Local configuration file (SDK path, etc)
+local.properties
+config/secrets.properties
+config/build.properties
+
+# Log & temp files
+*.log
+*.tmp
+*.temp
+
+# Android profiling
+*.hprof

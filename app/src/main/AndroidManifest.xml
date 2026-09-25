@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lacra">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <application
+        android:name=".LacraTraceApp"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@drawable/ic_logo_foreground"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LacraTraceApp">
+        <activity
+            android:name=".presentation.routing.RoutingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".presentation.auth.AuthActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LacraTraceApp"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".presentation.main.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LacraTraceApp"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".presentation.transactions.transactiondetails.TransactionDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LacraTraceApp"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".presentation.balances.CommodityGroupBalancesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LacraTraceApp"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".presentation.createtransaction.geodata.FarmGeoDataActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LacraTraceApp"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".presentation.createtransaction.CreateTransactionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LacraTraceApp"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".presentation.settings.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LacraTraceApp"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".presentation.notifications.NotificationsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LacraTraceApp"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+        <service
+            android:name=".services.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="barcode_ui"/>
+
+    </application>
+
+</manifest> 

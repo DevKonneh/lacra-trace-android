@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Include all shared preferences -->
+    <include domain="sharedpref" path="." />
+    <!-- Exclude auth_prefs.xml (sensitive) -->
+    <exclude domain="sharedpref" path="auth_prefs.xml" />
+
+    <!-- Include other app data -->
+    <include domain="database" path="." />
+    <include domain="file" path="." />
+</full-backup-content>
