@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FF298FC2</color>
-    <color name="primary_variant">#FF59CBE8</color>
-    <color name="secondary">#FF901F82</color>
-    <color name="secondary_variant">#FF720062</color>
-    <color name="background">#FFFFFFFF</color>
-    <color name="surface">#FFFFFFFF</color>
-    <color name="error">#FFB00020</color>
-    <color name="on_primary">#FFFFFFFF</color>
-    <color name="on_secondary">#FF000000</color>
-    <color name="on_background">#FF000000</color>
-    <color name="on_surface">#FF000000</color>
-    <color name="on_error">#FFFFFFFF</color>
+    <!--
+        LACRA Trace system-level colours (splash, system bars, launcher, notifications).
+        Compose UI colours live in presentation/ui/theme/Palette.kt - keep both in sync.
 
-    <!-- Custom Colors -->
+        Derived from the official LACRA logo (leaf green, cocoa-pod gold, bean brown).
+        Not an official brand manual: replace with official values if LACRA publishes them.
+    -->
+    <color name="brand_green">#FF226C13</color>
+    <color name="brand_green_light">#FF30BF16</color>
+    <color name="brand_green_dark">#FF14400B</color>
+    <color name="brand_green_tint">#FFE9F5E5</color>
+    <color name="brand_gold">#FFF8D92E</color>
+    <color name="brand_gold_dark">#FF7A6200</color>
+    <color name="brand_brown">#FF4A2D13</color>
+
+    <!-- Semantic roles -->
+    <color name="splash_background">@color/brand_green</color>
+    <color name="launcher_background">@color/brand_green</color>
+    <color name="notification_accent">@color/brand_green</color>
+    <color name="system_bar">#FFFFFFFF</color>
+    <color name="window_background">#FFFFFFFF</color>
+
+    <!-- Neutrals -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#FF757575</color>
     <color name="light_gray">#FFEEEEEE</color>
     <color name="transparent">#00000000</color>
-    <color name="berry_blue">#FF003964</color>
 </resources>
