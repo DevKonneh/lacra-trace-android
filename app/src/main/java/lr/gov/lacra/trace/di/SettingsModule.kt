@@ -1,0 +1,70 @@
+/*
+ * Copyright (c) 2025 EFI (https://efi.int/)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package lr.gov.lacra.trace.di
+
+import lr.gov.lacra.trace.data.AppDatabase
+import lr.gov.lacra.trace.data.settings.repository.SettingsRepository
+import lr.gov.lacra.trace.data.settings.repository.SettingsRepositoryImpl
+import lr.gov.lacra.trace.data.settings.service.SettingsService
+import lr.gov.lacra.trace.domain.settings.SettingsInteractor
+import lr.gov.lacra.trace.domain.settings.SettingsInteractorImpl
+import lr.gov.lacra.trace.presentation.settings.SettingsViewModel
+import lr.gov.lacra.trace.presentation.settings.account.AccountInfoViewModel
+import lr.gov.lacra.trace.presentation.settings.account.editemail.EditEmailViewModel
+import lr.gov.lacra.trace.presentation.settings.account.editphone.EditPhoneViewModel
+import lr.gov.lacra.trace.presentation.settings.changepassword.ChangePasswordViewModel
+import lr.gov.lacra.trace.presentation.settings.language.LanguageViewModel
+import lr.gov.lacra.trace.presentation.settings.notificationsettings.NotificationSettingsViewModel
+import org.koin.core.module.dsl.viewModel
+import org.koin.dsl.module
+import retrofit2.Retrofit
+
+val settingsModule = module {
+    // Services
+    single { get<Retrofit>(AUTHORISED).create(SettingsService::class.java) }
+
+    // DB
+    single { get<AppDatabase>().notificationSettingsDao() }
+
+    // Repositories
+    factory<SettingsRepository> { SettingsRepositoryImpl(service = get(), dao = get()) }
+
+    // Interactors
+    factory<SettingsInteractor> { SettingsInteractorImpl(repository = get(), sessionManager = get()) }
+
+    // ViewModels
+    viewModel {
+        SettingsViewModel(
+            interactor = get(),
+            createTransactionInteractor = get(),
+            testEnvironmentManager = get(),
+            errorHandler = get(),
+            resourceProvider = get(),
+        )
+    }
+    viewModel { AccountInfoViewModel(interactor = get(), errorHandler = get(), sharedPreferencesProvider = get(), resourceProvider = get()) }
+    viewModel { EditEmailViewModel(interactor = get(), errorHandler = get(), resourceProvider = get()) }
+    viewModel { EditPhoneViewModel(interactor = get(), errorHandler = get(), resourceProvider = get(), remoteConfigProvider = get()) }
+    viewModel { ChangePasswordViewModel(interactor = get(), errorHandler = get(), resourceProvider = get()) }
+    viewModel { NotificationSettingsViewModel(interactor = get(), errorHandler = get(), sharedPreferencesProvider = get(), resourceProvider = get()) }
+    viewModel { LanguageViewModel(appLocaleManager = get()) }
+}

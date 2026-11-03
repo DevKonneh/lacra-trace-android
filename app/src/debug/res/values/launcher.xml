@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- A separate, non-localized label keeps DEV visible in every app language. -->
+    <string name="app_name_dev" translatable="false">LACRA Trace DEV</string>
+</resources>

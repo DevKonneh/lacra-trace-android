@@ -2,26 +2,46 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.LacraTraceApp" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:colorBackground">#FFFFFF</item>
+        <item name="android:colorBackground">@color/window_background</item>
+
+        <item name="android:colorPrimary">@color/brand_green</item>
+        <item name="android:colorAccent">@color/brand_green</item>
 
         <item name="android:textColorPrimary">#000000</item>
         <item name="android:textColorSecondary">#616161</item>
 
-        <item name="android:statusBarColor">#FFFFFF</item>
+        <!-- White system bars with dark icons keep headers readable. On Android 15+
+             (edge-to-edge enforced for targetSdk 35+) the bar colours are ignored and the
+             window background shows through, which is also white. -->
+        <item name="android:statusBarColor">@color/system_bar</item>
         <item name="android:windowLightStatusBar">true</item>
 
-        <item name="android:navigationBarColor">#FFFFFF</item>
+        <item name="android:navigationBarColor">@color/system_bar</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
 
         <item name="android:windowAnimationStyle">@android:style/Animation.Activity</item>
 
+        <!-- The app has a light colour scheme only; opt out of forced dark so that
+             the brand colours are never auto-inverted. -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
+    <!-- Theme of the in-app splash (RoutingActivity) after the system splash: green window and bars so
+         there is no white flash or white status bar behind the green splash composable. -->
+    <style name="Theme.LacraTraceApp.Splash" parent="Theme.LacraTraceApp">
+        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="android:statusBarColor">@color/splash_background</item>
+        <item name="android:navigationBarColor">@color/splash_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+    </style>
+
+    <!-- Splash screen (androidx.core:core-splashscreen: Android 12+ system splash and
+         the compat implementation for API 26-30). -->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher</item>
-        <item name="postSplashScreenTheme">@style/Theme.LacraTraceApp</item>
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.LacraTraceApp.Splash</item>
         <item name="android:windowSplashScreenBrandingImage" tools:ignore="MissingTranslation,NewApi">@null</item>
     </style>
 </resources>
